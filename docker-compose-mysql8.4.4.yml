@@ -1,0 +1,24 @@
+
+services:
+  mysql:
+    image: mysql:8.4.4
+    container_name: mysql8-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-740969606}
+      # MYSQL_DATABASE: ${MYSQL_DATABASE:-devdb}
+      # MYSQL_USER: ${MYSQL_USER:-developer}
+      # MYSQL_PASSWORD: ${MYSQL_PASSWORD:-dev123456}
+      # TZ: ${TZ:-Asia/Shanghai}
+      # LANG: ${LANG:-C.UTF-8}
+      # MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST:-%}
+      # MYSQL_INITDB_SKIP_TZINFO: ${MYSQL_INITDB_SKIP_TZINFO:-1}
+    ports:
+      - "3306:3306"
+      # 33060 是 MySQL X Protocol 的端口。它用于支持 MySQL 的 X 协议
+      - "33060:33060"
+    volumes:
+      - /Users/zanglikun/dev/mysql8.4.4/conf:/etc/mysql/conf.d
+      - /Users/zanglikun/dev/mysql8.4.4/data:/var/lib/mysql
+      - /Users/zanglikun/dev/mysql8.4.4/log:/var/log/mysql
+  
